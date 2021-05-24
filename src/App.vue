@@ -1,10 +1,32 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+
+  {{userStore}}
+  <div v-if="!userStore.getters.isLoggedIn" class="d-grid gap-2 col-6 mx-auto">
+    <Login />
   </div>
-  <router-view/>
+  <div v-else class="text-center">
+    <h2>Welcome, {{ userStore.state.name }}</h2>
+    <Counter />
+    <button class="btn btn-secondary" @click="userStore.logout()">
+      Logout
+    </button>
+  </div>
 </template>
+<script lang="ts">
+import { onMounted, defineComponent } from 'vue'
+import userStore from './store/user'
+import Login from './components/Login'
+import Counter from './components/Counter.vue'
+
+export default defineComponent({
+  name: 'App',
+  components: { Login, Counter},
+  setup() {
+    onMounted(userStore.getUser)
+    return { userStore }
+  }
+})
+</script>
 
 <style lang="scss">
 #app {
