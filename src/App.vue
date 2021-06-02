@@ -48,5 +48,6 @@ export default defineComponent({
       color: #42b983;
     }
   }
+  
 }
 </style>
