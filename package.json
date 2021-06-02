@@ -47,8 +47,8 @@
     "*.{js,css,md}": "prettier --write"
   },
   "config": {
-    "cz-customizable": {
-      "config": "test.js"
+    "commitizen": {
+      "path": "cz-conventional-changelog"
     }
-   }
+  }
 }
